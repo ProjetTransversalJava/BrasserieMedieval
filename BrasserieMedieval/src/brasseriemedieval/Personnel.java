@@ -17,6 +17,7 @@ public class Personnel {
     private boolean en_pause;
     private String mdp;
     ArrayList<Personnel> liste_personnel;
+    ArrayList<Commande> liste_commande;
     
     /**
      * Personnel : classe destinée à devenir un serveur
@@ -72,6 +73,7 @@ public class Personnel {
         this.mdp = mdp;
         this.liste_personnel = p.liste_personnel;
     }
+    
     
     
 }
