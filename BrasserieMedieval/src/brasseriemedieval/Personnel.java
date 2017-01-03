@@ -19,8 +19,8 @@ public class Personnel {
     private String commentaire;
     private boolean en_pause;
     private String mdp;
-    private ArrayList<Personnel> liste_personnel;
-    private ArrayList<Commande> liste_commande;
+    private static ArrayList<Personnel> liste_personnel = new ArrayList<Personnel>();
+    private ArrayList<Commande> liste_commande = new ArrayList<Commande>();
     
     public Personnel()
     {
@@ -49,8 +49,7 @@ public class Personnel {
         this.commentaire = commentaire;
         this.en_pause = en_pause;
         this.mdp = mdp;
-        liste_personnel = new ArrayList<Personnel>();
-        liste_commande = new ArrayList<Commande>();
+        
     }
     /**
      * 
@@ -62,7 +61,7 @@ public class Personnel {
      * @param mdp STRING
      * @param liste_personnel ARRAYLIST DE PERSONNELS 
      */
-    public Personnel (int id_personnel, String nom, String prenom, String commentaire, boolean en_pause, String mdp, ArrayList<Personnel> liste_personnel)
+    public Personnel (int id_personnel, String nom, String prenom, String commentaire, boolean en_pause, String mdp, ArrayList<Commande> liste_commande)
     {
         this.id_personnel = id_personnel;
         this.nom = nom;
@@ -70,32 +69,10 @@ public class Personnel {
         this.commentaire= commentaire;
         this.en_pause= en_pause;
         this.mdp = mdp;
-        this.liste_personnel = liste_personnel;
-    
-    }
-    /**
-     * 
-     * @param id_personnel
-     * @param nom
-     * @param prenom
-     * @param commentaire
-     * @param en_pause
-     * @param mdp
-     * @param liste_personnel
-     * @param liste_commande 
-     */
-    public Personnel (int id_personnel, String nom, String prenom, String commentaire, boolean en_pause, String mdp, ArrayList<Personnel> liste_personnel, ArrayList<Commande> liste_commande)
-    {
-        this.id_personnel = id_personnel;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.commentaire= commentaire;
-        this.en_pause= en_pause;
-        this.mdp = mdp;
-        this.liste_personnel = liste_personnel;
         this.liste_commande = liste_commande;
-    }
     
+    }
+   
     /**
      * 
      * @param p PERSONNE 
@@ -110,7 +87,6 @@ public class Personnel {
         this.mdp = p.mdp;
         this.liste_personnel = p.liste_personnel;
     }
-    
     
     /**
      * 
@@ -246,16 +222,34 @@ public class Personnel {
     {
         return nom+" "+prenom+" "+ commentaire + " " + en_pause +" "+mdp;     
     }
-   
-    public String setData()
+    
+    public void donnerCommande(int id_commande, Personnel p)
     {
-        if(id_personnel >=0)
+        for( Commande c :liste_commande)
         {
-            
+            if(c.getId_commande() == id_commande)
+            {
+                p.prendreCommande(c);
+                break;
+            }
         }
-        else
+        System.out.println("attention, la commande n'existe pas");
+    }
+    public void prendreCommande(Commande c)
+    {
+        liste_commande.add(c);
+    }
+    
+    public void modifierEtat(int id_commande, Etat etat)
+    {
+        for(Commande c:liste_commande)
         {
-            return "SetData error : l'id du personnel n'est pas attribuée";
+            if(c.getId_commande() == id_commande)
+            {
+                c.setEtat(etat, this);
+            }
+            break;
         }
     }
+   
 }
