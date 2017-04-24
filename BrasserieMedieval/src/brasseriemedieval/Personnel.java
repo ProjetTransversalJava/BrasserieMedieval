@@ -13,14 +13,14 @@ public class Personnel {
     
     
     
-    private int id_personnel;
-    private String nom;
-    private String prenom;
-    private String commentaire;
-    private boolean en_pause;
-    private String mdp;
-    private static ArrayList<Personnel> liste_personnel = new ArrayList<Personnel>();
-    private ArrayList<Commande> liste_commande = new ArrayList<Commande>();
+    protected  int    id_personnel;
+    protected String  nom;
+    protected String  prenom;
+    protected String  commentaire;
+    protected boolean en_pause;
+    protected String  mdp;
+    protected static ArrayList<Personnel> liste_personnel = new ArrayList<Personnel>();
+    protected ArrayList<Commande> liste_commande = new ArrayList<Commande>();
     
     public Personnel()
     {
