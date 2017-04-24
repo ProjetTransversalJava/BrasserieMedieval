@@ -5,10 +5,13 @@
  */
 package brasseriemedieval;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author WorkStation
  */
 public class Manager {
+    private ArrayList<Personnel> managerPersonne;
     
 }
